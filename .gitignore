@@ -1,0 +1,14 @@
+.deps/
+Makefile
+config.h
+config.log
+config.status
+libtenm/.deps/
+libtenm/Makefile
+nbproject/
+record/.deps/
+record/Makefile
+spqr/.deps/
+spqr/Makefile
+spqr/image/Makefile
+stamp-h1
