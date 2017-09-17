@@ -1,0 +1,69 @@
+how to install dangen
+$Id: INSTALL,v 1.21 2005/07/11 21:18:58 oohara Exp $
+
+* requirement
+
+To compile dangen, you need:
+
+1) a C library (libc) (GNU C Library is known to work)
+2) the Simple DirectMedia Layer library (libSDL)
+3) SDL_image (libSDL_image)
+
+To hack dangen, you also need:
+
+1) autoconf
+2) automake
+3) flex
+4) bison
+
+* installation commands
+
+dangen follows the standard 3-step installation process, that is:
+1) ./configure
+2) make
+3) make install
+
+* ./configure options
+
+** --with
+
+--without-posix
+Don't use _most_ (not all) of the POSIX features, that is:
+  - You must NOT run "make install" --- I don't know where I put necessary
+    files on a non-POSIX system.
+  - Image data are loaded from the directory spqr/image/ in the current
+    directory.
+  - High score data are saved in the directory save/ in the current directory.
+  - The directory where high score data are saved (that is, "save/") is
+    not created by dangen.  You must create it manually before invoking dangen.
+  - All install directory options (see below) are ignored.
+    In short, you should invoke dangen as "./dangen" from the top directory of
+    the source tree.
+DON'T USE THIS OPTION UNLESS YOU KNOW WHAT YOU ARE DOING.  dangen is
+designed for a POSIX system.
+
+** install directories
+
+--prefix
+Everything will be installed here by default.
+
+--bindir
+The executable will be installed in this directory.
+
+--datadir
+The image files (spqr/image/*.png) will be installed in its
+subdirectory games/dangen/ .
+
+--mandir
+The manpage will be installed in its subdirectory man6/ .
+
+
+The FHS way will be something like:
+./configure --prefix=/usr --bindir=/usr/games \
+  --mandir=/usr/share/man
+
+If you have no root privilege and want to install dangen under
+your home directory, try:
+./configure --prefix=/home/oohara/temp/dangen
+Replace /home/oohara/temp/dangen as appropriate.  Note that
+these directories must be specified in their absolute path.

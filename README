@@ -1,0 +1,198 @@
+dangen --- shoot 'em up game where accurate shooting matters
+by Oohara Yuuma <oohara@libra.interq.or.jp>
+published by Project Geeste
+
+$Id: README,v 1.42 2009/11/10 19:01:43 oohara Exp $
+
+* what is dangen
+
+dangen is a shoot 'em up game that attach importance to accuracy of shooting.
+With the combination of the cursor key and the shot button, you can shoot
+at your side or even at your back.  Get the bonus point by hitting the
+enemy without a miss.  You can choose stages of different difficulty.
+
+* how to install dangen
+
+See the file INSTALL for information about how to install dangen.
+In short, install libc, libSDL and libSDL_image, then type
+1) ./configure
+2) make
+3) make install
+
+* command line options
+
+Your play record is not saved if you use cheat option(s).
+
+--free-select
+Allow you to select any stage.  You can select the same stage multiple
+times if you use this option.  This is a cheat option.
+
+--full-screen
+Run the game in the full screen mode.
+
+--help
+Print a help message and exit.
+
+--slow
+Enable the slow mode.  If you use this option,  you can run the game
+at the half speed by pressing the s key.  Press the s key again to play
+at the normal speed.  This is a cheat option.
+
+--version
+Print version information, license information and the disclaimer, then exit.
+
+* key control
+
+cursor keys     move
+space           shoot (see below)
+ESC             quit
+p               pause/continue
+
+A joystick is also available for move and shoot.  Note that you must
+plug the joystick before you invoke dangen.
+
+The game is paused if the mouse cursor leaves the window.  This prevents
+you from being killed while you does not have the focus on the window.
+
+* how to shoot
+
+Just pressing the space key is _NOT_ enough to fire a shot.
+There are 2 ways to shoot:
+
+  + By pressing one of the cursor keys while pressing the space key,
+    you can fire a shot in the direction that cursor key indicates.
+    You have 4 alternatives of directions: up, down, left and right.
+    Any input of a diagonal direction is ignored.
+  + If you press the space key and then release it before pressing
+    any cursor key, a shot is fired to the top of the window when
+    the space key is _released_.
+
+Your ship can't move while you press the space key.  This applies
+whether a shot has already been fired or not.
+
+When your ship fires a shot, it takes a short time to prepare the next shot.
+It can't shoot while it is purple or while it is rolling.
+
+Each time you press the space key, one and only one shot is fired.
+Once you press the space key, you can't stop shooting.
+
+* tap-tap move
+
+When your ship begins to move, it takes a very short but non-zero time to
+reach the top speed.  Therefore, you can adjust the position of your ship
+by hitting the cursor key quickly and repeatedly.
+
+* your ship
+
+If your ship gets hit by an enemy shot, an enemy ship or any other obstacle,
+your ship is destroyed.  If you have no more ship, you lose the game.
+The circle at the center is the only weak point of your ship.
+The rest is safe.
+
+You get an additional ship for each 200,000 points. If you clear all of the
+5 (not 4) stages, each remaining (unused) ship is worth 30,000 points.
+
+* the shot of your ship
+
+The shot of your ship consists of two parts: the head and the tail.
+Only the head of your shot deals damage to enemies.  Its tail is
+just a decoration for your convenience; the tail of your shot turns black
+if it misses.
+
+The shot of your ship deals damage in 2 ways:
+
+  + If its head hits an enemy directly, it deals 20 damage to that enemy.
+  + If it hits something, it explodes.  The explosion deals to each enemy
+    it touches 1 damage per frame.  The explosion remains for 30 frames.
+
+Therefore, an enemy gets at most 50 damage per shot (20 damage for a direct
+hit, 30 damage for explosion).  The number displayed near an enemy is the
+hit point of that enemy.
+
+* the color of a enemy
+
+There are 3 colors of enemies: brown, green and red.  Most of the enemies
+are brown and sometimes change their colors to green.  You can get an
+additional score by destroying enemies when they are green (see below).
+You can't destroy red enemies.
+
+* the boss enemy
+
+A boss enemy appears at the end of each stage.  If you destroy it, you can
+go to the next stage.  Note that some boss enemies have 2 or more forms
+and some stages have 2 or more boss enemies.
+
+However, you don't have to destroy the boss enemy by yourself to go to
+the next stage.  The boss enemy self-destructs if you survive for a few
+minutes (don't ask why), and you clear the stage.
+
+The window flashes when the boss enemy is dead.  A white flash means you
+killed it.  A blue flash means it commited suicide.
+
+* the chain bonus
+
+You can get an additional score if you destroy green enemies without a miss.
+This is called the chain bonus.
+
+  number of chains     bonus point
+     1                      1
+     2                      2
+     3                      4
+     4                      8
+     5                     16
+     6                     32
+     7                     64
+     8                    128
+     9                    256
+    10                    512
+    11+                  1024
+
+The number of chains increases if one of the following happens:
+  + your shot destroys a green enemy
+  + your shot hits a green enemy directly
+If the direct hit of your shot destroys a green enemy, only 1 is added
+to the chain count.
+
+The number of chains is reset to 0 if one of the following happens:
+  + your shot misses
+  + your ship is destroyed
+  + a boss enemy self-destructs
+  + you clear a stage
+Note that you don't have to shoot only green enemies to keep the number
+of chains.  If your shot hits something (even if it is a brown enemy or
+an obstacle), it's enough.
+
+* secret stages
+
+Usually, you select 4 stages of difficulty [hard] or lower.  The game
+has extra stages for experts:
+  + If you clear a stage with difficulty [normal] or greater, you can
+    select [very hard] stages.
+  + If you clear 4 stages and if at least one of the cleared stages has
+    difficulty [hard] or greater, you can play the [hardest] stage as stage 5.
+    Note that you can't select other stages as stage 5. 
+These restrictions apply to each play.
+
+* license
+
+See the file LICENSE for information about the license.  In short,
+the license is GPL exactly version 2 or the Artistic License Version
+2.0beta5, whichever you like.
+
+* contact information
+
+Please send bug reports or comments to Oohara Yuuma
+<oohara@libra.interq.or.jp>.  Also check the dangen webpage:
+http://www.interq.or.jp/libra/oohara/dangen/index.html
+
+* history
+
+The initial version of dangen was released on Thu, 14 Jul 2005.
+"dangen" is a Japanese word which has two meanings; one is "the source of
+bullets", the place enemy shots come from; and the other is "assertion",
+to say plainly and strongly, which is considered rude in Japan.
+
+The stage data, "spqr", was dedicated to shinichiro.h
+<s31552@mail.ecc.u-tokyo.ac.jp>, who is famous for his Parliamentary
+Bullet Dodging System.  This was why the stage data was named after
+the ancient Roman idiom.
